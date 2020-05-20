@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -26,6 +27,7 @@ import com.google.ar.core.Pose;
 import com.google.ar.core.Session;
 import com.google.ar.core.TrackingState;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.Scene;
 import com.google.ar.sceneform.math.Vector3;
@@ -135,12 +137,20 @@ public class HelloSceneformActivity extends AppCompatActivity
                                        Node node = new Node();
                                        node.setRenderable( andyRenderable );
                                        node.setParent( anchorNode );
-                                       node.setOnTapListener( ( hitTestResult
-                                                                      ,
-                                                                motionEvent ) -> Log.d(
-                                               TAG,
-                                               "TAPTAPTAP"
-                                                                                                     ) );
+                                       node.setOnTapListener( new Node.OnTapListener()
+                                       {
+                                          @Override
+                                          public void onTap( HitTestResult hitTestResult,
+                                                             MotionEvent motionEvent )
+                                          {
+                                             Toast.makeText(
+                                                     getApplicationContext(),
+                                                     "TAPTAPTAP",
+                                                     Toast.LENGTH_SHORT
+                                                           ).show();
+                                             Log.d( TAG, "TAPTAPTAP" );
+                                          }
+                                       } );
                                     }
 
                                  } );
