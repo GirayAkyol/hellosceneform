@@ -131,8 +131,8 @@ public class HelloSceneformActivity extends AppCompatActivity
                         node = new Node();
                         node.setParent( anchorNode );
                         node.setRenderable( andyRenderable );
-                        node.setWorldPosition( new Vector3( anchor.getPose().tx(),
-                                                            anchor.getPose().compose( Pose.makeTranslation( 0f, 0.05f, 0f ) ).ty(),
+                        node.setWorldPosition( new Vector3( anchor.getPose().tx(), anchor.getPose().ty(),
+                                                            //anchor.getPose().compose( Pose.makeTranslation( 0f, 0.05f, 0f ) ).ty(),
                                                             anchor.getPose().tz()
                         ) );
                         placed = true;
