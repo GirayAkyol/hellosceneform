@@ -52,6 +52,7 @@ public class HelloSceneformActivity extends AppCompatActivity
    private Anchor anchor;
    private Node node;
    private AnchorNode anchorNode;
+   private Scene scene;
    private boolean placed;
 
    @Override
@@ -65,7 +66,7 @@ public class HelloSceneformActivity extends AppCompatActivity
 
       setContentView( R.layout.activity_ux );
       arFragment = (ArFragment) getSupportFragmentManager().findFragmentById( R.id.ux_fragment );
-      Scene scene = arFragment.getArSceneView().getScene();
+      scene = null;
       anchorNode = null;
       placed = false;
       node = null;
@@ -93,6 +94,7 @@ public class HelloSceneformActivity extends AppCompatActivity
          }
       } );
 
+      scene = arFragment.getArSceneView().getScene();
       scene.addOnUpdateListener( new Scene.OnUpdateListener()
       {
          @Override
@@ -131,10 +133,7 @@ public class HelloSceneformActivity extends AppCompatActivity
                         node = new Node();
                         node.setParent( anchorNode );
                         node.setRenderable( andyRenderable );
-                        node.setWorldPosition( new Vector3( anchor.getPose().tx(), anchor.getPose().ty(),
-                                                            //anchor.getPose().compose( Pose.makeTranslation( 0f, 0.05f, 0f ) ).ty(),
-                                                            anchor.getPose().tz()
-                        ) );
+                        node.setWorldPosition( new Vector3( anchor.getPose().tx(), anchor.getPose().ty(), anchor.getPose().tz() ) );
                         placed = true;
                         break; //TODO
                      }
